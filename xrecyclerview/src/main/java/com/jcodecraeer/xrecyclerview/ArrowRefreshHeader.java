@@ -1,6 +1,7 @@
 package com.jcodecraeer.xrecyclerview;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -20,6 +21,9 @@ import com.jcodecraeer.xrecyclerview.progressindicator.AVLoadingIndicatorView;
 
 import java.util.Date;
 
+/**
+ * 头部 刷新 进度 封装
+ */
 public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeader {
 
     private static final String XR_REFRESH_KEY = "XR_REFRESH_KEY";
@@ -33,8 +37,8 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
 	private TextView mHeaderTimeView;
 	private LinearLayout mHeaderRefreshTimeContainer;
 
-	private Animation mRotateUpAnim;
-	private Animation mRotateDownAnim;
+	private Animation mRotateUpAnim;   // 设置 mArrowImageView 的图标箭头向上动画
+	private Animation mRotateDownAnim; // 设置 mArrowImageView 的图标箭头向下动画
 	
 	private static final int ROTATE_ANIM_DURATION = 180;
 
@@ -103,6 +107,7 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
         if(mProgressBar != null)
             mProgressBar.setView(progressView);
 
+        // 旋转动画 RotateAnimation
 		mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 		mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
@@ -129,12 +134,15 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
         }
     }
 
+
+    // 设置图片 view
     public void setArrowImageView(int resid){
         mArrowImageView.setImageResource(resid);
     }
 
+    // 设置刷新的显示进度状态
 	public void setState(int state) {
-		if (state == mState) return ;
+		if (state == mState) return ; // 正常状态
 
 		if (state == STATE_REFRESHING) {	// 显示进度
 			mArrowImageView.clearAnimation();
@@ -187,14 +195,14 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
     }
 
     private long getLastRefreshTime(){
-        SharedPreferences s =
+        @SuppressLint("WrongConstant") SharedPreferences s =
                 getContext()
                     .getSharedPreferences(XR_REFRESH_KEY,Context.MODE_APPEND);
         return s.getLong(XR_REFRESH_TIME_KEY,new Date().getTime());
     }
 
     private void saveLastRefreshTime(long refreshTime){
-        SharedPreferences s =
+        @SuppressLint("WrongConstant") SharedPreferences s =
                 getContext()
                     .getSharedPreferences(XR_REFRESH_KEY,Context.MODE_APPEND);
         s.edit().putLong(XR_REFRESH_TIME_KEY,refreshTime).commit();

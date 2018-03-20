@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.jcodecraeer.xrecyclerview.progressindicator.AVLoadingIndicatorView;
 
+/**
+ * 加载更多页脚
+ */
 public class LoadingMoreFooter extends LinearLayout {
 
     private SimpleViewSwitcher progressCon;

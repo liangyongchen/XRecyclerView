@@ -16,7 +16,7 @@ import android.view.View;
 
 
 public class JellyView extends View  implements BaseRefreshHeader{
-    Path path;
+    Path path;  // Path主要用于绘制复杂的图形轮廓，比如折线，圆弧以及各种复杂图案
 
     Paint paint;
 
@@ -47,7 +47,7 @@ public class JellyView extends View  implements BaseRefreshHeader{
     }
 
     private void init() {
-        if (isInEditMode()) {
+        if (isInEditMode()) { // view自带方法 isInEditMode()：如果该视图处于编辑模式，则返回true，否则为false。
             return;
         }
         path = new Path();
@@ -63,8 +63,9 @@ public class JellyView extends View  implements BaseRefreshHeader{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        path.reset();
-        path.lineTo(0, minimumHeight);
+        path.reset(); // 清除path设置的所有属性，复位到初始状态
+        path.lineTo(0, minimumHeight); // 方法用于从当前轮廓点绘制一条线段到x，y点：
+        // path.quadTo 用于绘制圆滑曲线，即贝塞尔曲线。
         path.quadTo(getMeasuredWidth() / 2, minimumHeight + jellyHeight, getMeasuredWidth(), minimumHeight);
         path.lineTo(getMeasuredWidth(), 0);
         canvas.drawPath(path, paint);

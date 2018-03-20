@@ -76,7 +76,7 @@ import com.jcodecraeer.xrecyclerview.progressindicator.indicator.TriangleSkewSpi
  .SemiCircleSpin
  *
  */
-public class AVLoadingIndicatorView extends View{
+public class AVLoadingIndicatorView extends View{  // AV加载指示器视图
     //indicators
     public static final int BallPulse=0;
     public static final int BallGridPulse=1;

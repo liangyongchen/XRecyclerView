@@ -7,6 +7,7 @@ import android.support.design.widget.AppBarLayout;
  */
 
 public abstract class AppBarStateChangeListener implements AppBarLayout.OnOffsetChangedListener {
+// 在AppBarLayout的布局偏移量发生改变时被调用。这个方法允许子view根据偏移量实现自定义的行为（比如在特定Y值的时候固定住一个View）。
 
     public enum State {
         EXPANDED,

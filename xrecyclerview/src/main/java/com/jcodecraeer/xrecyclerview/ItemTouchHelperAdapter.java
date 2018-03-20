@@ -21,7 +21,7 @@ public interface ItemTouchHelperAdapter {
      * @see RecyclerView#getAdapterPositionFor(RecyclerView.ViewHolder)
      * @see RecyclerView.ViewHolder#getAdapterPosition()
      */
-    void onItemMove(int fromPosition, int toPosition);
+    void onItemMove(int fromPosition, int toPosition); // item移动：每次移动到一个item显示时候都会触发该事件
 
 
     /**
@@ -35,5 +35,5 @@ public interface ItemTouchHelperAdapter {
      * @see RecyclerView#getAdapterPositionFor(RecyclerView.ViewHolder)
      * @see RecyclerView.ViewHolder#getAdapterPosition()
      */
-    void onItemDismiss(int position);
+    void onItemDismiss(int position); // 当一个项目被移出屏幕内触发该事件
 }
